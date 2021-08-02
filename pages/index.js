@@ -32,6 +32,7 @@ export default function Home() {
       <main className='grid w-full p-10 px-0 text-center bg-green-200 justify-items-stretch'>
         <h1 className = "p-5 text-2xl">Create Cookie Stand</h1>
       
+      
       <form onSubmit = {handler}>
         <label for='loc' className = "inline-block m-3" >Location</label>
         <input name="location" type='text'></input>
