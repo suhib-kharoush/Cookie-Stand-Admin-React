@@ -48,8 +48,6 @@ export default function Home() {
         <p className="m-3">{JSON.stringify(store)}</p>
 
         
-        
-        
       </form>
 
 
