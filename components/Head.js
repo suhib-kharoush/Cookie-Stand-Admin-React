@@ -1,10 +1,10 @@
-export default function Head(props) {
-    return (
+import Head from 'next/head'
 
-        <head>
-            <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"></link>
-            <title>{props.title}</title>
-        </head>
-        
-    )
-}
+export default function Head1(props){
+    return(
+        <Head>
+          <title>Cookie Stand Admin</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+    );
+  }

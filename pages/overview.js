@@ -1,17 +1,22 @@
-import Header from "../components/Header";
-import Head from "../components/Head";
-import { useState } from "react";
+import Link from 'next/link'
+import React from 'react'
 
 
-export default function Overview(){
-    const [title, setTitle] = useState("Overview");
-    const [path, setPath] = useState("/");
-    const [page, setPage] = useState("Cookie Stand Admin");
 
-    return(
-        <div className = 'bg-green-100'>
-        <Head title = {title}/>
-        <Header header = {title} path = {path} page = {page}/>
-        </div>
+
+export default function overview() {
+    return (
+        
+
+
+        <header className="flex items-center justify-between p-4 bg-green-500">
+        <h1 className='text-3xl'>
+          Cookie Stand Admin
+        </h1>
+        <Link href="/"><a className='p-2 bg-green-100 rounded-md'>Return to Main page</a></Link>
+        
+      </header>
+
+        
     )
 }
