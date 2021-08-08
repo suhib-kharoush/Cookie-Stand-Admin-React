@@ -1,9 +1,8 @@
+
 export default function Footer(props){
-    return (
-        <footer className='p-3 bg-green-400'>
-
-      &copy;2021  
-
-      </footer>
-    )
+  return(
+    <footer className="items-center p-4 mt-4 text-center bg-green-500">
+    <h2 className='text-center'> {props.report.length} Locations World Wide </h2>
+  </footer>
+  ) 
 }

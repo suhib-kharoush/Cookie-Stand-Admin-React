@@ -1,24 +1,40 @@
-// import Head from 'next/head'
-import { useState } from 'react'
 
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Main from '../components/Main';
-import Head from '../components/Head';
-
-export default function Home() {
-  const [title, setTitle] = useState('Cookie Stand Admin');
-  const [branches, setBranches] = useState('0')
-  const [path, setPath] = useState('/overview')
-  const [page, setPage] = useState('overview')
+import axios from "axios";
+import { useState } from "react";
 
 
-  return (
-    <div className = 'bg-green-100'>
-      <Head title = {title} />
-      <Header header={title} path={path} page={page} />
-      <Main title = {title} setBranches = {setBranches} />
-      <Footer branches={branches} />
-    </div>
-  )
+import CookieStandAdmin from "../components/CookieStandAdmin"
+import LoginForm from '../components/LoginForm'
+
+const baseUrl = 'https://cookie-stand-api.herokuapp.com';
+const tokenUrl= baseUrl +'/api/token/';
+const refreshToken= baseUrl + '/api/token/refresh';
+
+
+export default function Home(props){
+
+  const [token, setToken] = useState('');
+  const [refreshToken, setRefreshToken] = useState('');
+
+  async function getToken(credentials){
+    const fetchedToken = await axios.post(tokenUrl, credentials);
+    setToken(fetchedToken.data.access);
+    setRefreshToken(fetchedToken.data.refresh);
   }
+
+  function signouthandler(){
+    setToken('')
+  }
+
+
+  function loginHandler(credentials){
+    getToken(credentials)
+  }
+
+  
+  if (token) return <CookieStandAdmin  token={token} signouthandler={signouthandler} />
+ 
+  return  <LoginForm loginHandler={loginHandler} />
+
+}
+
