@@ -1,37 +1,60 @@
-import { useState } from "react";
+
+import Head from 'next/head'
+import Link from 'next/link'
+import { useState } from 'react';
+
 
 export default function LoginForm(props){
-    function submitHandler(event){
-        event.preventDefault();
-        props.loginHandler({username:username, password:password})
-
-    }
 
     const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    function submitHandeler(event){
+        event.preventDefault();
+        props.loginHandler({username:username, password:password})
+    }
+
     function usernameChangeHandler(event){
         event.preventDefault();
         setUsername(event.target.value);
     }
 
-    const [password, setPassword] = useState('');
+    
+
     function passwordChangeHandler(event){
         event.preventDefault();
         setPassword(event.target.value);
     }
+
+
     return(
-        <form className="flex flex-col w-1/2 gap-4 p-8 mx-auto my-4 text-center bg-green-200 border-2 border-green-400 rounded-lg text-md" onSubmit={submitHandler} >
-            <div className="flex flex-col ">
-                <label className="mb-2 font-bold uppercase text-grey-darkest" htmlFor="username">User Name</label>
-                <input className="px-3 py-2 border text-grey-darkest" type="text" name="username" id="username" placeholder="User Name" onChange={usernameChangeHandler}  />
-            </div>
+        <div>
+            <Head>
+                <title>Cookie Stand Admin</title>
+            </Head>
 
-            <div className="flex flex-col ">
-                <label className="mb-2 font-bold uppercase text-grey-darkest" htmlFor="password">Password</label>
-                <input className="px-3 py-2 border text-grey-darkest" type="password" name="password" id="password" placeholder="password" onChange={passwordChangeHandler} />
-            </div>
+            <header className="flex items-center justify-between p-4 bg-green-500">
+                <h1 className="text-4xl">Cookie Stand Admin</h1>
+                <Link  href='/overview'>
+                    <a className="p-1 rounded bg-green-50"> Overview </a>
+                </Link>
+            </header>
 
-            <button className="px-3 py-4 mt-8 uppercase bg-green-500 rounded text-green hover:bg-green-600 text-gray-50" type="submit">Sign In</button>
+            <main>
+                <form onSubmit={submitHandeler} className='flex-col w-2.7/3 m-3 text-center bg-green-300 border border-green-500 rounded-md'>
+                    <h2 className='w-full mb-3 font-bold mt-7'>USER NAME </h2>
+                    <input name='username' type="text"  onChange={usernameChangeHandler} className='w-5/6 py-1 mx-auto ' placeholder='User Name'/>
+                    <h2 className='w-full mt-4 mb-3 font-bold'>PASSWORD </h2>
+                    <input name='password' type='password' onChange={passwordChangeHandler} className='w-5/6 py-1 mx-auto ' placeholder='password' />
+                    <input type="submit" value='SIGN IN'  className='w-5/6 py-2 mx-auto mt-8 mb-5 bg-green-500 rounded'/>
+                </form>  
+            </main>
 
-        </form>
-    );
-  }
+            <footer className="flex items-center justify-between p-4 bg-green-500 text-black-100">
+                <div> &copy;2021</div>
+            </footer>
+        </div>
+    )
+
+        
+}
